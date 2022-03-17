@@ -1,0 +1,6 @@
+.env
+**/.DS_Store
+/terraform
+**/.terraform
+**/.terraform.lock.hcl
+infra/terrafrom/projects/eugener-one
