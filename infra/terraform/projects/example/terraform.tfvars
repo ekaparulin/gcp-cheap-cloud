@@ -22,6 +22,6 @@ init_scripts   = [ "dns.sh", "peervpn.sh" , "docker-mail-server.sh" ]
 dns_zone = "MY_DNS_MANAGED_ZONE"
 dns_names = [ "MY_DNS_NAME_1", "MY_DNS_NAME_2" ]
 wildcard_certificate = "example.com"
-cert_email = cert-contact-example-com@gmail.com"
+cert_email = "cert-contact-example-com@gmail.com"
 
 mail_host_name = "mail.example.com"
