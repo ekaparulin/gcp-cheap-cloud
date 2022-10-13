@@ -102,5 +102,30 @@ resource "google_compute_firewall" "wireguard" {
   ]
 }
 
+resource "google_compute_firewall" "mail-server" {
+
+  name    = "${var.network}-allow-mail-server"
+  network = var.network
+
+  target_tags = [
+    "mail-server"
+  ]
+
+  allow {
+    protocol = "tcp"
+    ports    = [    
+      "25",
+      "143",
+      "465",
+      "587",
+      "993"
+    ]
+  }
+
+  source_ranges = [
+      var.source_cidr
+  ]
+}
+
 
 

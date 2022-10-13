@@ -31,7 +31,7 @@ module "compute" {
     vpc_network       = var.vpc_network
     vpc_subnetwork    = var.vpc_subnetwork
 
-    init_bucket    = "gs://${google_storage_bucket.init-script-bucket.name}"
+    script_bucket    = "gs://${google_storage_bucket.script.name}"
 
     dns_zone       = var.dns_zone
     dns_names      = join(",", var.dns_names)

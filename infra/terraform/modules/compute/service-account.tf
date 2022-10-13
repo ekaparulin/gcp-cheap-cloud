@@ -10,6 +10,18 @@ resource "google_project_iam_member" "storage_object_viewer" {
   member  = "serviceAccount:${google_service_account.service_account.email}"
 }
 
+resource "google_project_iam_member" "storage_object_creator" {
+  project = data.google_project.project.project_id
+  role    = "roles/storage.objectCreator"
+  member  = "serviceAccount:${google_service_account.service_account.email}"
+}
+
+resource "google_project_iam_member" "storage_object_admin" {
+  project = data.google_project.project.project_id
+  role    = "roles/storage.objectAdmin"
+  member  = "serviceAccount:${google_service_account.service_account.email}"
+}
+
 resource "google_project_iam_member" "secretmanager_secret_accessor" {
   project = data.google_project.project.project_id
   role    = "roles/secretmanager.secretAccessor"

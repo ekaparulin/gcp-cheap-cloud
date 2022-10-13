@@ -49,12 +49,16 @@ resource "google_compute_instance" "instance" {
 
   metadata = {
       project = var.gcp_project
-      init_bucket = var.init_bucket
+      script_bucket = var.script_bucket
       dns_zone = var.dns_zone
       dns_names = var.dns_names
-  }
+      wildcard_certificate = var.wildcard_certificate
+      cert_email = var.cert_email
+      mail_host_name = var.mail_host_name
 
-  metadata_startup_script = data.template_file.startup-script.rendered
+      startup-script-url = "${var.script_bucket}/${var.instance_name}/startup.sh"
+      shutdown-script-url = "${var.script_bucket}/${var.instance_name}/shutdown.sh"
+  }
 
   service_account {
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
