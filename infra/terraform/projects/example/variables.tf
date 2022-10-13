@@ -37,6 +37,9 @@ variable "dns_zone" {
 }
 
 variable "dns_names" {}
+variable "wildcard_certificate" {}
+variable "cert_email" {}
+variable "mail_host_name" {}
 
 # variable cluster_name {
 #     description = "GKE cluster name"

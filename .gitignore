@@ -4,4 +4,4 @@
 **/.terraform
 **/.terraform.lock.hcl
 /infra/terraform/projects/*
-#!/infra/terraform/projects/example
+!/infra/terraform/projects/example

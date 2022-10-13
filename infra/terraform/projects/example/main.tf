@@ -31,8 +31,11 @@ module "compute" {
     vpc_network       = var.vpc_network
     vpc_subnetwork    = var.vpc_subnetwork
 
-    script_bucket    = "gs://${google_storage_bucket.script.name}"
+    script_bucket    = "gs://${google_storage_bucket.scripts.name}"
 
     dns_zone       = var.dns_zone
     dns_names      = join(",", var.dns_names)
+    wildcard_certificate = var.wildcard_certificate
+    cert_email = var.cert_email
+    mail_host_name = var.mail_host_name
 }
