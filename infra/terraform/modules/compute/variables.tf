@@ -42,18 +42,6 @@ variable "wildcard_certificate" {}
 variable "cert_email" {}
 variable "mail_host_name" {}
 
-# variable network {
-#     description = "GCP network"
-# }
-
-# variable cluster_name {
-#     description = "GKE cluster name"
-# } 
-
-# variable cluster_ipv4_cidr_block {
-#     description = "GKE cluster IPV4 CIDR block"
-# }
-
 variable schedule_start {}
 variable schedule_stop {}
 variable schedule_tz {}
