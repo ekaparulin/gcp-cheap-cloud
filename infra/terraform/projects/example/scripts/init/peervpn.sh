@@ -1,6 +1,6 @@
 #!/bin/bash
 
-yay -Suy peervpn
+yay -Sy peervpn
 
 gcloud secrets versions access latest --secret="peervpn" > /etc/peervpn.conf
 

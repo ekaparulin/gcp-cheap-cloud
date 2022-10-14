@@ -1,6 +1,5 @@
 #!/bin/bash
 
-yay -Suy --noconfirm
 yay -Sy --noconfirm wget jq
 
 BUCKET=$(curl "http://metadata.google.internal/computeMetadata/v1/instance/attributes/script_bucket" -H "Metadata-Flavor: Google")
