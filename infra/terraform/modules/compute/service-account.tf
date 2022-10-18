@@ -28,6 +28,13 @@ resource "google_project_iam_member" "secretmanager_secret_accessor" {
   member  = "serviceAccount:${google_service_account.service_account.email}"
 }
 
+resource "google_project_iam_member" "secretmanager_secret_version_adder" {
+  project = data.google_project.project.project_id
+  role    = "roles/secretmanager.secretVersionAdder"
+  member  = "serviceAccount:${google_service_account.service_account.email}"
+}
+
+
 resource "google_project_iam_member" "logs_writer" {
   project = data.google_project.project.project_id
   role    = "roles/logging.logWriter"

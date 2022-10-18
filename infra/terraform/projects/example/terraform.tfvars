@@ -17,7 +17,7 @@ machine_type   = "e2-micro"
 
 tags           = [ "peervpn", "mail-server" ]
 
-init_scripts   = [ "dns.sh", "peervpn.sh" , "docker-mail-server.sh" ]
+init_scripts   = [ "dns.sh", "peervpn.sh" , "docker-mail-server.sh", ]
 
 dns_zone = "MY_DNS_MANAGED_ZONE"
 dns_names = [ "MY_DNS_NAME_1", "MY_DNS_NAME_2" ]
