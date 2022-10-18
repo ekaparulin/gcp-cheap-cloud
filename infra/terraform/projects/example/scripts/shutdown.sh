@@ -7,3 +7,7 @@ INSTANCE_NAME=$(curl "http://metadata.google.internal/computeMetadata/v1/instanc
 cd /opt/docker-mail-server/
 tar cvfz docker-mail-server.tar.gz data
 gsutil cp -r /opt/docker-mail-server/docker-mail-server.tar.gz "$BUCKET/$INSTANCE_NAME/backups/" 
+
+cd /etc/letsencrypt
+tar cvfz - * | base64 > /tmp/letsencrypt
+gcloud secrets versions add letsencrypt --data-file=/tmp/letsencrypt
