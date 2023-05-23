@@ -1,0 +1,27 @@
+---
+- name: Provision wireguard configs
+  template:
+    src: wireguard/{{item}}
+    dest: /etc/wireguard/{{item}}
+  loop:
+    - wg0.conf
+
+
+- name: Provision systemd configs
+  template:
+    src: systemd/{{item}}
+    dest: /etc/systemd/system/{{item}}
+  loop:
+    - wireguard-wg0.service
+
+- name: Enable service
+  systemd:
+    name: "{{item}}"
+    state: started
+    enabled: yes
+  loop:
+    - wireguard-wg0.service
+
+- name: Reload all systemd configs
+  systemd:
+    daemon_reload: yes

@@ -29,19 +29,16 @@ variable image {}
 
 variable instance_count {}
 
-variable "script_bucket" {
-  
-}
 
 variable "dns_zone" {
   
 }
 
 variable "dns_names" {}
-variable "wildcard_certificate" {}
-variable "cert_email" {}
-variable "mail_host_name" {}
 
+variable schedule_count {
+    default = 0
+}
 variable schedule_start {}
 variable schedule_stop {}
 variable schedule_tz {}

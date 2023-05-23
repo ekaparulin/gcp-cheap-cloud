@@ -1,0 +1,5 @@
+haproxy:
+  stats:
+    creds: USER:PASWORD
+  backend:
+    hass: IP:PORT

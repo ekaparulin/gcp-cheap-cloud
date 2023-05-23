@@ -1,0 +1,41 @@
+- name: Install package
+  community.general.pacman:
+    name: '{{item}}'
+    state: present
+    update_cache: true
+  loop:
+    - haproxy
+
+- name: Create chroot directory
+  ansible.builtin.file:
+    path: /var/lib/haproxy
+    state: directory
+    mode: '0755'
+    owner: haproxy
+    group: haproxy
+
+- name: Create PEM file
+  ansible.builtin.shell: cat '/opt/acme.sh/config/*.eugener.one/fullchain.cer' '/opt/acme.sh/config/*.eugener.one/*.eugener.one.key' >> wildcard.pem
+  args:
+    chdir: /etc/ssl/private/
+    creates: wildcard.pem
+  
+- name: Provision config file
+  template:
+    src: etc/{{item}}
+    dest: /etc/haproxy/{{item}}
+    mode: '0644'
+  loop:
+    - haproxy.cfg
+
+- name: Enable service
+  systemd:
+    name: "{{item}}"
+    state: started
+    enabled: yes
+  loop:
+    - haproxy.service
+
+- name: Reload all systemd configs
+  systemd:
+    daemon_reload: yes

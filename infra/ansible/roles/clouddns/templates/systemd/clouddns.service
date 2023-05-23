@@ -1,0 +1,14 @@
+[Unit]
+Description=CloudDNS update
+After=multi-user.target
+
+
+[Service]
+
+Type=oneshot
+RemainAfterExit=yes
+ExecStart=/opt/bin/clouddns.sh
+Environment=
+
+[Install]
+WantedBy=last.target

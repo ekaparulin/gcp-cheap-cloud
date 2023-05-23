@@ -3,5 +3,5 @@
 /terraform
 **/.terraform
 **/.terraform.lock.hcl
-/infra/terraform/projects/*
-!/infra/terraform/projects/example
+/infra/terraform/projects/*/terraform.tfvars
+infra/ansible/secrets.yaml

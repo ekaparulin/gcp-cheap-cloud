@@ -1,0 +1,9 @@
+- hosts: all
+  become: yes
+  become_method: sudo
+  roles:
+    - { role: clouddns }
+    - { role: acmesh }
+    - { role: systemd }
+    - { role: wireguard }
+    - { role: haproxy }

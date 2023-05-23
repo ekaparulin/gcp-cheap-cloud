@@ -22,20 +22,20 @@ module "compute" {
 
     gcp_project   = var.gcp_project
     gcp_region    = var.gcp_region
+
+    schedule_count = var.schedule_enabled
     schedule_start = var.instance_start
     schedule_stop  = var.instance_stop
     schedule_tz    = var.time_zone
+
     instance_name  = var.instance_name
     machine_type   = var.machine_type
     tags           = var.tags
+
     vpc_network       = var.vpc_network
     vpc_subnetwork    = var.vpc_subnetwork
 
-    script_bucket    = "gs://${google_storage_bucket.scripts.name}"
-
     dns_zone       = var.dns_zone
     dns_names      = join(",", var.dns_names)
-    wildcard_certificate = var.wildcard_certificate
-    cert_email = var.cert_email
-    mail_host_name = var.mail_host_name
+
 }

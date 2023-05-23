@@ -8,7 +8,6 @@ The goal of this repo is to run a very cheap GCP project (below 10$ per month) w
 - customization boot scripts
 - recreatable
 - DNS + SSL updates
-- use of Secret manager
 
 # Bootstrap
 
@@ -22,9 +21,5 @@ gsutil mb -l europe-north1 -p PROJECT gs://PROJECT-terraform-state
 ```
 - Run `terrafrom init`, `terraform apply`
   
-
-# Secrets
-
-Create secrets in Secret manager if needed and retrieve them from init-scripts scripts. 
-Refer to `infra/terraform/projects/example/init-scripts/peervpn.sh` as example.
+# Modify VM with Ansible
 

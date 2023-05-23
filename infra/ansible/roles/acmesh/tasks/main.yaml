@@ -1,0 +1,33 @@
+- name: Install packages
+  community.general.pacman:
+    name: '{{item}}'
+    state: present
+    update_cache: true
+  loop:
+    - cronie
+    - socat
+    - acme.sh
+
+- name: Provision /opt directory structure
+  file:
+    path: /opt/{{item}}
+    state: directory
+  loop:
+    - acme.sh/config
+
+- name: Install acme.sh cronjob
+  ansible.builtin.command: acme.sh --install-cronjob
+  environment:
+    LE_WORKING_DIR: /opt/acme.sh/config
+
+- name: Register acme.sh account
+  ansible.builtin.command: acme.sh --register-account -m {{ acmesh.email }}
+  environment:
+    LE_WORKING_DIR: /opt/acme.sh/config
+
+- name: Issue acme.sh cert
+  ansible.builtin.command: acme.sh --issue --dns dns_gcloud  -d  {{ acmesh.domain }} --dnssleep 300 --force
+  environment:
+    LE_WORKING_DIR: /opt/acme.sh/config
+    PATH: "/var/lib/snapd/snap/bin:{{ ansible_env.PATH }}"
+

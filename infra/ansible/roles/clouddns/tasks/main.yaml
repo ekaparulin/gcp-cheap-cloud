@@ -1,0 +1,34 @@
+---
+- name: Provision /opt directory structure
+  file:
+    path: /opt/{{item}}
+    state: directory
+  loop:
+    - bin
+
+- name: Provision scripts
+  template:
+    src: bin/{{item}}
+    dest: /opt/bin/{{item}}
+    mode: '0775'
+  loop:
+    - clouddns.sh
+
+- name: Provision systemd configs
+  template:
+    src: systemd/{{item}}
+    dest: /etc/systemd/system/{{item}}
+  loop:
+    - clouddns.service
+
+- name: Enable systemd services
+  systemd:
+    name: "{{item}}"
+    state: started
+    enabled: yes
+  loop:
+    - clouddns.service
+
+- name: Reload all systemd configs
+  systemd:
+    daemon_reload: yes

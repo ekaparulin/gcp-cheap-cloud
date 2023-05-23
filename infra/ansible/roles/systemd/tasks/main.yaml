@@ -1,0 +1,22 @@
+---
+- name: Provision directory structure
+  file:
+    path: /etc/systemd/system/custom.target.wants
+    state: directory
+
+- name: Provision systemd configs
+  template:
+    src: systemd/{{item}}
+    dest: /etc/systemd/system/{{item}}
+  loop:
+    - last.target
+
+- name: Change default target to last.target
+  file:
+    src: /etc/systemd/system/last.target
+    dest: /etc/systemd/system/default.target
+    state: link
+
+- name: Reload all systemd configs
+  systemd:
+    daemon_reload: yes

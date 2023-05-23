@@ -1,4 +1,5 @@
 resource "google_compute_resource_policy" "policy" {
+  count = var.schedule_count
   name   = var.instance_name
   region = var.gcp_region
   description = "Start and stop instances"
@@ -49,15 +50,8 @@ resource "google_compute_instance" "instance" {
 
   metadata = {
       project = var.gcp_project
-      script_bucket = var.script_bucket
       dns_zone = var.dns_zone
       dns_names = var.dns_names
-      wildcard_certificate = var.wildcard_certificate
-      cert_email = var.cert_email
-      mail_host_name = var.mail_host_name
-
-      startup-script-url = "${var.script_bucket}/${var.instance_name}/startup.sh"
-      shutdown-script-url = "${var.script_bucket}/${var.instance_name}/shutdown.sh"
   }
 
   service_account {
@@ -65,9 +59,5 @@ resource "google_compute_instance" "instance" {
     email  =  google_service_account.service_account.email
     scopes = ["cloud-platform"]
   }
- 
-   resource_policies = [
-       google_compute_resource_policy.policy.self_link
-    ]
 
 }
