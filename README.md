@@ -4,10 +4,8 @@ The goal of this repo is to run a very cheap GCP project (below 10$ per month) w
 
 - custom network
 - firewall rules
-- preemptible VM with on/off schedule
-- customization boot scripts
-- recreatable
-- DNS + SSL updates
+- preemptible VM with optional on/off schedule
+- customization with Ansible
 
 # Bootstrap
 
@@ -23,3 +21,4 @@ gsutil mb -l europe-north1 -p PROJECT gs://PROJECT-terraform-state
   
 # Modify VM with Ansible
 
+- create secrets.yaml
