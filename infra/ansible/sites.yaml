@@ -5,5 +5,4 @@
     - { role: clouddns }
     - { role: acmesh }
     - { role: systemd }
-    - { role: wireguard }
     - { role: haproxy }
